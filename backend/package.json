@@ -1,0 +1,15 @@
+{
+  "name": "sanbot-robot-backend",
+  "version": "1.0.0",
+  "description": "迎宾机器人运营后台（零第三方依赖）：点位/任务/访客台账/知识库问答 + xlsx 导出",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test/smoke.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {},
+  "license": "Apache-2.0"
+}

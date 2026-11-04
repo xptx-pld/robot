@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">激光导航</string>
+    <string name="bridge_started">桥接服务已启动</string>
+    <string name="lidar_missing">未检测到 RPLIDAR，请检查 USB 供电</string>
+    <string name="no_map">暂无地图</string>
+    <string name="no_tags">获取不到位置点</string>
+    <string name="navi_to">请跟我来，我将带你去：%1$s</string>
+    <string name="navi_arrived">已到达：%1$s</string>
+    <string name="navi_cancel">已取消导航</string>
+    <string name="obstacle_stop">前方有障碍，我先停一下</string>
+    <string name="obstacle_slow">前方人多，减速通行</string>
+    <string name="estop">已紧急停止</string>
+</resources>

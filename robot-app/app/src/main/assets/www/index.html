@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title>激光导航 · Sanbot S1</title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div id="app">
+    <header>
+        <div class="brand">
+            <div class="logo"></div>
+            <div>
+                <h1>激光导航控制台</h1>
+                <p>RPLIDAR A1M8 · 地图导航 SDK 1.5</p>
+            </div>
+        </div>
+        <div class="chips">
+            <span class="chip" id="chip-nav">导航：--</span>
+            <span class="chip" id="chip-lidar">雷达：--</span>
+            <span class="chip" id="chip-safety">避障：--</span>
+            <span class="chip" id="chip-batt">电量：--</span>
+        </div>
+    </header>
+
+    <main>
+        <section class="panel map-panel">
+            <div class="panel-head">
+                <span>地图 / 实时位姿</span>
+                <span class="dim" id="map-meta">--</span>
+            </div>
+            <div class="canvas-wrap">
+                <canvas id="map-canvas" width="640" height="480"></canvas>
+                <div class="empty" id="map-empty">暂无地图<br/><small>请先在机器人地图 App 中建图</small></div>
+            </div>
+        </section>
+
+        <section class="panel radar-panel">
+            <div class="panel-head">
+                <span>激光扫描</span>
+                <span class="dim" id="radar-meta">--</span>
+            </div>
+            <canvas id="radar-canvas" width="320" height="320"></canvas>
+            <div class="radar-legend">
+                <span><i class="dot ok"></i>通畅</span>
+                <span><i class="dot warn"></i>减速</span>
+                <span><i class="dot danger"></i>停车</span>
+            </div>
+        </section>
+
+        <section class="panel side-panel">
+            <div class="panel-head">
+                <span>导航点位</span>
+                <span class="dim" id="tag-count">0</span>
+            </div>
+            <ul id="tag-list" class="tag-list"></ul>
+            <div class="buttons">
+                <button class="btn primary" id="btn-cancel">取消导航</button>
+                <button class="btn danger" id="btn-estop">紧急停止</button>
+                <button class="btn" id="btn-mapapp">建图 App</button>
+                <button class="btn" id="btn-sim">仿真模式</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <span id="log-line">等待机器人状态…</span>
+        <span class="dim" id="bridge-info"></span>
+    </footer>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+# RPLIDAR A1M8 参数
+# 手册：115200 bps，测距 0.15~12m，扫描频率典型 5.5Hz（PPT 实测 8.7Hz，属正常范围）
+rplidar_node:
+  ros__parameters:
+    channel_type: serial
+    serial_port: /dev/rplidar
+    serial_baudrate: 115200
+    frame_id: laser
+    inverted: false
+    angle_compensate: true
+    # A1 系列用 Standard 扫描模式；Express 模式需要固件支持
+    scan_mode: Standard
+    topic_name: scan

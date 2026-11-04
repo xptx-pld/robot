@@ -1,0 +1,26 @@
+// 机器人端（Sanbot S1 / 旗瀚 Qihan 平台）还原工程
+// 说明：真机为 Android 5.1 (API 22) 级别系统，且官方 SDK 依赖 support-v7，
+//       因此这里沿用 compileSdk 27 + support 库的组合，不要贸然迁移到 AndroidX。
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.5.4'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        jcenter()
+        maven { url 'https://jitpack.io' }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

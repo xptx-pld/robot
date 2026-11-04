@@ -1,0 +1,63 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 27
+
+    defaultConfig {
+        // 与 2019 版 demo 一致：外部（前置应用/肩膀按键/后台）通过该包名拉起导航
+        applicationId "com.qihancloud.frontnavigation"
+        minSdkVersion 19
+        targetSdkVersion 26
+        versionCode 20261104
+        versionName "2.0.0-restore"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    sourceSets {
+        main {
+            // MapHelper.so（32 位 ARM）与 Map_1.5.2.jar、dsdk aar 都放在 app/libs
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+        checkReleaseBuilds false
+    }
+
+    packagingOptions {
+        exclude 'META-INF/*.kotlin_module'
+    }
+}
+
+repositories {
+    flatDir { dirs 'libs' }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    // 旗瀚开放 SDK：TopBaseActivity / SpeechManager / WheelMotionManager / SystemManager
+    implementation(name: 'dsdk-Normal-release', ext: 'aar')
+    // 地图导航协议 SDK 1.5.2：MapClient / Map / PositionTag / Msg
+    implementation files('libs/Map_1.5.2.jar')
+
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
+
+    // RPLIDAR A1M8 走 USB 转串口，机器人端用 usb-serial-for-android
+    implementation 'com.github.mik3y:usb-serial-for-android:3.4.6'
+}

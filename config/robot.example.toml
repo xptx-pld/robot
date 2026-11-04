@@ -1,0 +1,18 @@
+# robot configuration
+# All values are provisional until G1-G6 are answered.
+
+[robot]
+wheel_base_m = 0.24
+wheel_radius_m = 0.065
+max_linear_mps = 0.35
+max_angular_rps = 1.2
+max_linear_accel_mps2 = 0.8
+max_angular_accel_rps2 = 2.0
+command_timeout_s = 0.25
+waypoint_tolerance_m = 0.05
+control_period_s = 0.02
+
+[serial]
+port = "COM3"
+baudrate = 115200
+read_timeout_s = 0.05

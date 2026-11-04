@@ -1,0 +1,40 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+conout$
+CONOUT$
+recovery/usage_*.json
+*.log
+
+# 第一阶段取证材料（对话元数据/调查记录，含主机与账号信息，仅本地留存）
+/recovery/
+
+# 凭据（绝不入库）
+.token
+token.txt
+tools/.token
+.env
+
+# ---------------------------------------------------------------
+# 不上传的内容（体积大 / 厂商原始资料 / 个人参赛材料）
+# 需要时从本地目录复制，说明见 docs/还原说明.md
+# ---------------------------------------------------------------
+/20191118/
+/雷达SDK/
+/基于激光雷达*/
+
+# Android / Gradle 本地产物
+.gradle/
+local.properties
+*.iml
+*.apk
+*.aab
+captures/

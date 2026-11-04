@@ -1,0 +1,46 @@
+# slam_toolbox 定位模式参数
+# 与建图参数一致，只把 mode 改为 localization：只做定位，不再扩图。
+# 地图文件来自建图时保存的 map.posegraph / map.data（见 maps/README.md）。
+slam_toolbox:
+  ros__parameters:
+    solver_plugin: solver_plugins::CeresSolver
+    ceres_linear_solver: SPARSE_NORMAL_CHOLESKY
+    ceres_preconditioner: SCHUR_JACOBI
+    ceres_trust_strategy: LEVENBERG_MARQUARDT
+    ceres_dogleg_type: TRADITIONAL_DOGLEG
+    ceres_loss_function: None
+
+    odom_frame: odom
+    map_frame: map
+    base_frame: base_link
+    scan_topic: /scan
+
+    mode: localization
+
+    map_file_name: /home/robot/maps/hotel_map
+    map_start_pose: [0.0, 0.0, 0.0]
+    map_start_at_dock: true
+
+    max_laser_range: 8.0
+    resolution: 0.05
+    minimum_time_interval: 0.2
+    transform_timeout: 0.3
+    tf_buffer_duration: 30.0
+    stack_size_to_use: 40000000
+
+    use_scan_matching: true
+    use_scan_barycenter: true
+    minimum_travel_distance: 0.10
+    minimum_travel_heading: 0.10
+    scan_buffer_size: 10
+    scan_buffer_maximum_scan_distance: 10.0
+    do_loop_closing: false
+
+    distance_variance_penalty: 0.5
+    angle_variance_penalty: 1.0
+    fine_search_angle_offset: 0.00349
+    coarse_search_angle_offset: 0.349
+    coarse_angle_resolution: 0.0349
+    minimum_angle_penalty: 0.9
+    minimum_distance_penalty: 0.5
+    use_response_expansion: true

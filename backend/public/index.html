@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>机器人运营后台</title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<header>
+    <div class="logo"></div>
+    <div>
+        <h1>机器人运营后台</h1>
+        <p>点位 · 任务 · 访客台账 · 知识库 · 数据看板</p>
+    </div>
+    <span class="pill" id="health">连接中…</span>
+</header>
+
+<nav>
+    <button class="tab active" data-view="stats">数据看板</button>
+    <button class="tab" data-view="points">点位</button>
+    <button class="tab" data-view="tasks">导航任务</button>
+    <button class="tab" data-view="visitors">访客台账</button>
+    <button class="tab" data-view="qa">知识库</button>
+</nav>
+
+<main>
+    <section id="view-stats" class="view active">
+        <div class="cards" id="stat-cards"></div>
+        <div class="panel">
+            <h2>热门目的地</h2>
+            <table>
+                <thead><tr><th>点位</th><th>次数</th></tr></thead>
+                <tbody id="top-targets"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="view-points" class="view">
+        <div class="panel">
+            <h2>导航点位</h2>
+            <form id="form-point" class="row">
+                <input name="name" placeholder="名称，例如 会议室" required/>
+                <input name="x" type="number" step="0.01" placeholder="x (m)" required/>
+                <input name="y" type="number" step="0.01" placeholder="y (m)" required/>
+                <input name="yaw" type="number" step="0.01" placeholder="朝向 (rad)" value="0"/>
+                <button type="submit">新增</button>
+            </form>
+            <table>
+                <thead><tr><th>ID</th><th>名称</th><th>x</th><th>y</th><th>朝向</th><th></th></tr></thead>
+                <tbody id="points-body"></tbody>
+            </table>
+            <p class="hint">点位名必须与机器人地图 App、ROS2 <code>waypoints.yaml</code> 三处一致。</p>
+        </div>
+    </section>
+
+    <section id="view-tasks" class="view">
+        <div class="panel">
+            <h2>导航任务</h2>
+            <form id="form-task" class="row">
+                <input name="target" placeholder="目标点位" required/>
+                <select name="source">
+                    <option value="touch">触屏</option>
+                    <option value="voice">语音</option>
+                    <option value="remote">后台</option>
+                </select>
+                <button type="submit">下发</button>
+            </form>
+            <table>
+                <thead><tr><th>ID</th><th>目标</th><th>来源</th><th>时间</th></tr></thead>
+                <tbody id="tasks-body"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="view-visitors" class="view">
+        <div class="panel">
+            <h2>访客台账</h2>
+            <form id="form-visitor" class="row">
+                <input name="name" placeholder="姓名" required/>
+                <input name="phone" placeholder="手机号"/>
+                <input name="company" placeholder="拜访企业"/>
+                <input name="reason" placeholder="事由"/>
+                <button type="submit">登记</button>
+            </form>
+            <table>
+                <thead><tr><th>ID</th><th>姓名</th><th>电话</th><th>企业</th><th>事由</th><th>时间</th></tr></thead>
+                <tbody id="visitors-body"></tbody>
+            </table>
+            <a class="btn" href="/api/export/visitors.xlsx" id="export">导出 xlsx</a>
+            <p class="hint">导出由 <code>lib/xlsx.js</code> 手写 zip + CRC32 生成，无任何第三方依赖。</p>
+        </div>
+    </section>
+
+    <section id="view-qa" class="view">
+        <div class="panel">
+            <h2>知识库</h2>
+            <form id="form-qa" class="row">
+                <input name="question" placeholder="问题，例如 租金多少" required/>
+                <input name="keywords" placeholder="关键词，逗号分隔"/>
+                <input name="answer" placeholder="回答" required/>
+                <button type="submit">新增</button>
+            </form>
+            <table>
+                <thead><tr><th>问题</th><th>关键词</th><th>回答</th><th></th></tr></thead>
+                <tbody id="qa-body"></tbody>
+            </table>
+            <form id="form-ask" class="row">
+                <input name="q" placeholder="试问一句，看看机器人会怎么答"/>
+                <button type="submit">提问</button>
+            </form>
+            <div id="ask-result" class="answer"></div>
+        </div>
+    </section>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
